@@ -46,17 +46,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/profile/password", jwtAuthMiddleware, async (req, res) => {
-  try {
-    const userId = req.Candidate.id; // Extract the id from the token
-    const { currentPassword, newPassword } = req.body;
-    const user = await Candidate.findById(userId);
-    if (!(await user.comparePassword(currentPassword))) {
-      return res.status(401).json({ error: "Invalid  password" });
+router.put("/profile/password", try {
+    if (!checkAdminRole(req.user.id)) {
+      return res.status(404).json({ message: "user has not admin role" });
     }
-    user.password = newPassword;
-    console.log("Password updated");
-    res.status(200).json({ message: "Password updated successfully" });
+    const data = req.body; // Assuming the request body contains the person data
+
+    // Create a new Person document using the Mongoose model
+    const newCandidate = new Candidate(data);
+
+    // Save the new person to the database
+    const response = await newCandidate.save();
+    console.log("data saved");
+    res.status(200).json({ response: response });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });
