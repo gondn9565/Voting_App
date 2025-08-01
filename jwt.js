@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-
+//it is used to create and verify JSON Web Tokens (JWTs) in Node.js applications.
 const jwtAuthMiddleware = (req, res, next) => {
   // first check request headers has authorization or not
   const authorization = req.headers.authorization;
