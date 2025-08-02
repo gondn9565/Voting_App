@@ -13,8 +13,8 @@ app.get("/", (req, res) => {
 });
 const userRoutes = require("./routes/userRoutes");
 app.use("/user", userRoutes);
-const candidateRoutes = require("./routes/candidateRoutes");
-app.use("/candidate", jwtAuthMiddleware, candidateRoutes);
+// const candidateRoutes = require("./routes/candidateRoutes");
+// app.use("/candidate", jwtAuthMiddleware, candidateRoutes);
 app.listen(PORT, () => {
   console.log("listening on port 3000");
 });

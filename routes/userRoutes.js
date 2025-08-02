@@ -6,12 +6,12 @@ const { jwtAuthMiddleware, generateToken } = require("./../jwt");
 // POST route to add a user
 router.post("/signup", async (req, res) => {
   try {
-    const data = req.body; // Assuming the request body contains the person data
+    const data = req.body; // Assuming the request body contains the user data
 
-    // Create a new Person document using the Mongoose model
+    // Create a new user document using the Mongoose model
     const newUser = new User(data);
 
-    // Save the new person to the database
+    // Save the new user to the database
     const response = await newUser.save();
     console.log("data saved");
 
@@ -33,7 +33,7 @@ router.post("/signup", async (req, res) => {
 // Login Route
 router.post("/login", async (req, res) => {
   try {
-    // Extract username and password from request body
+    // Extract aadharCardNumber and password from request body
     const { aadharCardNumber, password } = req.body;
 
     // Find the user by username
