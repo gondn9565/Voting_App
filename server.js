@@ -12,7 +12,9 @@ app.get("/", (req, res) => {
   res.send("Voting App API is running...");
 });
 const userRoutes = require("./routes/userRoutes");
+const candidateRoutes = require("./routes/candidateRoutes");
 app.use("/user", userRoutes);
+app.use("/candidate", candidateRoutes);
 // const candidateRoutes = require("./routes/candidateRoutes");
 // app.use("/candidate", jwtAuthMiddleware, candidateRoutes);
 app.listen(PORT, () => {
